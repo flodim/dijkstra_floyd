@@ -93,6 +93,6 @@ gd = DictGraph({
     'e': {'a': 7, 'c': 6}
 })
 
-#print(dijkstra(gm, 0))
-#print(dijkstra(gd, 'a'))
+print(dijkstra(gm, 0))
+print(dijkstra(gd, 'a'))
 print(floyd(gm))
