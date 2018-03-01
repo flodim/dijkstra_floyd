@@ -45,6 +45,8 @@ class DictGraph(Graph):
         yield from self.vertices_dict[vertex].keys()
 
 
+
+
 def dijkstra(graph: Graph, first_vertex):
     dist = {vertex: inf for vertex in graph.vertices}
     dist[first_vertex] = 0
@@ -65,6 +67,17 @@ def dijkstra(graph: Graph, first_vertex):
     return pred, dist
 
 
+
+def floyd(graph: Graph):
+    dist = graph.weights_matrix
+    for k in range(graph.nb_vertices):
+        for i in range(graph.nb_vertices):
+            for j in range(graph.nb_vertices):
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+    return dist
+
+
 #                 0    1    2    3    4
 gm = MatrixGraph([[  0,   2,   4, inf,   3],  # 0
                   [  2,   0,   8, inf,   1],  # 1
@@ -80,6 +93,6 @@ gd = DictGraph({
     'e': {'a': 7, 'c': 6}
 })
 
-
-print(dijkstra(gm, 0))
-print(dijkstra(gd, 'a'))
+#print(dijkstra(gm, 0))
+#print(dijkstra(gd, 'a'))
+print(floyd(gm))
